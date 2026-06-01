@@ -39,41 +39,5 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: package
-        path: .//**/*.apk
-      run: |
-        if [ ! -f buildozer.spec ]; then
-          echo "Creating buildozer.spec..."
-          cat > buildozer.spec << 'EOF'
-        [app]
-        title = Supermarket POS
-        package.name = supermarketpos
-        package.domain = org.supermarket
-        source.dir = .
-        source.include_exts = py,png,jpg,kv,atlas,db
-        source.main = app_final.py
-        version = 3.0.0
-        requirements = python3,kivy,kivymd
-        orientation = portrait
-        fullscreen = 0
-        android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,CAMERA
-        android.api = 31
-        android.minapi = 21
-        android.ndk = 25b
-        android.accept_sdk_license = True
-        
-        [buildozer]
-        log_level = 2
-        warn_on_root = 1
-        EOF
-        fi
-    
-    - name: Build APK with Buildozer
-      run: |
-        buildozer android debug
-    
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: supermarket-pos-apk
-        path: bin/*.apk
+        name: supermarket-apk
+        path: "**/*.apk"
