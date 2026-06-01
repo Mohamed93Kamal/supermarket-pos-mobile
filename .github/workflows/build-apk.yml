@@ -34,8 +34,7 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
-        buildozer init
-        sed -i 's/# log_level = 2/log_level = 2/' buildozer.spec
+        sed -i 's/# log_level = 2/log_level = 2/' buildozer.spec || true
         buildozer -v android debug
 
     - name: Upload APK
